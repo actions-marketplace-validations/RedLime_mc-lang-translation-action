@@ -63,8 +63,7 @@ async function run() {
         for (const [langName, exist] of Object.entries(editableExist)) {
             if (!exist) {
                 languageData[langName] = JSON.parse(JSON.stringify(defaultData));
-                fs.writeFileSync(path.join(basePath, langName + editableSuffix + fileSuffix), JSON.stringify(languageData[langName], null, 4), 'utf8');
-                core.info(`'${langName}' editable file wasn't exist, created new.`);
+                core.info(`'${langName}' editable file wasn't exist, it will create new editable file.`);
             }
 
             core.info(`start updating '${langName}'...`);
@@ -79,13 +78,17 @@ async function run() {
                     if (defaultValue == value) continue;
 
                     // check outdated original value
-                    if (oldValue && defaultValue != oldValue) continue;
+                    if (oldValue && defaultValue != oldValue) {
+                        languageData[langName] = undefined;
+                        continue;
+                    }
                 }
 
                 resultData[key] = value;
             }
             
             fs.writeFileSync(path.join(basePath, langName + fileSuffix), JSON.stringify(resultData, null, 4), 'utf8');
+            fs.writeFileSync(path.join(basePath, langName + editableSuffix + fileSuffix), JSON.stringify(languageData[langName], null, 4), 'utf8');
             core.info(`done with update '${langName}'.`);
         }
 
