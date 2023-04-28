@@ -80,6 +80,7 @@ async function run() {
             fs.writeFileSync(path.join(basePath, langName + fileSuffix), JSON.stringify(resultData, null, 4), 'utf8');
             core.info(`done with update '${langName}'.`);
         }
+        core.info(`complete!`);
     } catch (error) {
         core.setFailed(error.message);
     }
