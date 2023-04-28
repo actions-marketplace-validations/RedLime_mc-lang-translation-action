@@ -45,7 +45,7 @@ It doesn't checkout or push commits, so it does only proceeds to edit files in w
 ### Example
 - [test.yml](/.github/workflows/test.yml)
 - Another
-```
+```yml
 on: 
   schedule:
     - cron: '0 0 0 * * *'
