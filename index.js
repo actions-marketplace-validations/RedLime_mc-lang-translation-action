@@ -90,7 +90,7 @@ async function run() {
         }
 
         core.info(`backup old default strings...`);
-        fs.writeFileSync(path.join(basePath, defaultData + backupSuffix + fileSuffix), JSON.stringify(defaultData, null, 4), 'utf8');
+        fs.writeFileSync(path.join(basePath, defaultName + backupSuffix + fileSuffix), JSON.stringify(defaultData, null, 4), 'utf8');
         core.info(`done with backup default strings.`);
 
         core.info(`complete!`);
