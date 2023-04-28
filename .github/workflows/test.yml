@@ -20,4 +20,4 @@ jobs:
         with:
           add: '*.json --force'
           message: 'chore: update lang files'
-          push: origin HEAD:${{ github.head_ref }}
+          push: origin HEAD:${{ github.ref_name }}
