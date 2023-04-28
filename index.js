@@ -64,6 +64,21 @@ async function run() {
                 fs.writeFileSync(path.join(basePath, langName + editableSuffix + fileSuffix), JSON.stringify(languageData[langName], null, 4), 'utf8');
                 core.info(`'${langName}' editable file wasn't exist, created new.`);
             }
+
+            core.info(`start updating '${langName}'...`);
+
+            const resultData = {};
+            for (const [key, value] of Object.entries(languageData[langName])) {
+                const defaultValue = defaultData[key];
+                if (defaultValue) {
+                    if (defaultValue == value) continue;
+                }
+
+                resultData[key] = value;
+            }
+            
+            fs.writeFileSync(path.join(basePath, langName + fileSuffix), JSON.stringify(resultData, null, 4), 'utf8');
+            core.info(`done with update '${langName}'.`);
         }
     } catch (error) {
         core.setFailed(error.message);
