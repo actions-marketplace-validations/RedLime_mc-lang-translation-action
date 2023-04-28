@@ -13,6 +13,10 @@ inputs:
     description: 'lang file suffix for editable files'
     required: false
     default: '.editable'
+  default-language:
+    description: 'default language'
+    required: false
+    default: 'en_us'
 runs:
   using: 'node16'
   main: 'index.js'

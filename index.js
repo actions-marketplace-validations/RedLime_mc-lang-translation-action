@@ -10,6 +10,7 @@ try {
     const basePath = core.getInput('base-path');
     const fileSuffix = core.getInput('end-with');
     const editableSuffix = core.getInput('editable-suffix');
+    const defaultName = core.getInput('default-language');
 
     core.debug('reading base-path files...');
     const pathFiles = fs.readdirSync(path.join(basePath));
@@ -18,8 +19,16 @@ try {
     for (const pathName of pathFiles) {
         if (!pathName.endsWith(fileSuffix)) return;
         
-        const isEditable = pathName.substring(0, pathName.length - fileSuffix.length).endsWith(fileSuffix);
-        core.debug(`found '${pathName}'. (editable: ${isEditable})`);
+        let finalizeName = pathName.substring(0, pathName.length - fileSuffix.length);
+        
+        const isEditable = finalizeName.endsWith(editableSuffix);
+        if (isEditable) {
+            finalizeName = finalizeName.substring(0, finalizeName.length - editableSuffix.length);
+        }
+
+        const isDefault = finalizeName == defaultName;
+
+        core.debug(`found '${pathName}'. (editable: ${isEditable}, default: ${isDefault})`);
     }
 } catch (error) {
     core.setFailed(error.message);
