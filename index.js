@@ -83,6 +83,7 @@ async function run() {
                         continue;
                     }
                 } else if (oldValue) {
+                    // check deleted original value
                     languageData[langName][key] = undefined;
                     continue;
                 }
