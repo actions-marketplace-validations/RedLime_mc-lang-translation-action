@@ -1,0 +1,18 @@
+name: 'MC lang file helper'
+author: 'RedLime'
+description: 'Update lang files automatically for minecraft lang files'
+inputs:
+  base-path: 
+    description: 'lang file paths'
+    required: true
+  end-with: 
+    description: 'lang file end with, like .json'
+    required: false
+    default: '.json'
+  editable-suffix: 
+    description: 'lang file suffix for editable files'
+    required: false
+    default: '.editable'
+runs:
+  using: 'node16'
+  main: 'index.js'
