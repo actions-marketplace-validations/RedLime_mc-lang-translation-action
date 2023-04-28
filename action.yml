@@ -1,4 +1,4 @@
-name: 'MC lang file helper'
+name: 'MC Language File Helper'
 author: 'RedLime'
 description: 'Update lang files automatically for minecraft lang files'
 inputs:
