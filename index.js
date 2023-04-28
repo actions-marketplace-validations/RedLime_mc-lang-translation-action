@@ -1,7 +1,7 @@
 const core = require('@actions/core');
-const github = require('@actions/github');
-const exec = require('@actions/exec');
-const glob = require('@actions/glob');
+// const github = require('@actions/github');
+// const exec = require('@actions/exec');
+// const glob = require('@actions/glob');
 
 const fs = require('fs');
 const path = require('path');
