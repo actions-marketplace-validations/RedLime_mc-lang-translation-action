@@ -54,17 +54,16 @@ jobs:
   run_schedule:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Test work
-        uses: ./
-        id: test
+      - uses: actions/checkout@v3
+      - name: work
+        uses: RedLime/mc-lang-translation-action@v1
         with: 
-          base-path: './test'
+          base-path: '/src/main/resources/assets/examplemod/lang'
+          editable-suffix: '.TRANSLATE_ME'
       - name: Commit update lang files
         uses: endbug/add-and-commit@v9
         with:
-          add: './test'
+          add: '/src/main/resources/assets/examplemod/lang'
           message: 'chore: update lang files'
           default_author: github_actions
 ```
