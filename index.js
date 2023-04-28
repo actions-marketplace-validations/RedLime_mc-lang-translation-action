@@ -7,6 +7,10 @@ const fs = require('fs');
 const path = require('path');
 
 async function run() {
+    let defaultData = {};
+    const languageData = {};
+    const editableExist = {};
+
     try {
         const basePath = core.getInput('base-path');
         const fileSuffix = core.getInput('end-with');
@@ -34,6 +38,32 @@ async function run() {
             core.info(`reading '${pathName}'...`);
             const langData = JSON.parse(fs.readFileSync(path.join(basePath, pathName), 'utf8'));
             core.info(`read '${pathName}' json. lang keys: ${Object.keys(langData).length}`);
+
+            if (isDefault) {
+                defaultData = langData;
+            } else {
+                if (editableExist[finalizeName] == undefined) editableExist[finalizeName] = false;
+                
+                if (isEditable) {
+                    languageData[finalizeName] = langData;
+                    editableExist[finalizeName] = true;
+                }
+            }
+        }
+
+        if (!defaultData) {
+            core.setFailed('Failed to load default lang file.');
+            return;
+        }
+        
+        core.info('done with reading lang files, try updating...');
+
+        for (const [langName, exist] of Object.entries(editableExist)) {
+            if (!exist) {
+                languageData[langName] = JSON.parse(JSON.stringify(defaultData));
+                fs.writeFileSync(path.join(basePath, langName + editableSuffix + fileSuffix), JSON.stringify(languageData[langName], null, 4), 'utf8');
+                core.info(`'${langName}' editable file wasn't exist, created new.`);
+            }
         }
     } catch (error) {
         core.setFailed(error.message);
