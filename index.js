@@ -8,10 +8,10 @@ const path = require('path');
 
 async function run() {
     try {
-        const basePath = getInput('base-path');
-        const fileSuffix = getInput('end-with');
-        const editableSuffix = getInput('editable-suffix');
-        const defaultName = getInput('default-language');
+        const basePath = core.getInput('base-path');
+        const fileSuffix = core.getInput('end-with');
+        const editableSuffix = core.getInput('editable-suffix');
+        const defaultName = core.getInput('default-language');
     
         core.debug('reading base-path files...');
         const pathFiles = fs.readdirSync(path.join(basePath));
