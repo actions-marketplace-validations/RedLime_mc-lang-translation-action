@@ -4,7 +4,6 @@ jobs:
   test:
     runs-on: ubuntu-latest
     name: Test
-    if: ${{ !contains(github.event.head_commit.message, 'chore:') }}
     permissions:
       contents: write
     steps:
@@ -18,5 +17,6 @@ jobs:
       - name: Commit update lang files
         uses: endbug/add-and-commit@v9
         with:
-          add: '*.json'
+          add: './test'
           message: 'chore: update lang files'
+          default_author: github_actions
