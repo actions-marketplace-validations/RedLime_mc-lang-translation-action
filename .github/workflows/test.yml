@@ -16,8 +16,7 @@ jobs:
         with: 
           base-path: './test'
       - name: Commit update lang files
-        uses: EndBug/add-and-commit@v9
+        uses: endbug/add-and-commit@v9
         with:
-          add: '*.json --force'
+          add: '*.json'
           message: 'chore: update lang files'
-          push: origin HEAD:main
