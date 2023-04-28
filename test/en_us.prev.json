@@ -1,4 +1,5 @@
 {
     "test.hi": "hi!",
-    "test.bye": "bye :("
+    "test.bye": "bye :(",
+    "test.error": "error"
 }
