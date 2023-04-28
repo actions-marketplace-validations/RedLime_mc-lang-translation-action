@@ -82,6 +82,9 @@ async function run() {
                         languageData[langName][key] = defaultValue;
                         continue;
                     }
+                } else if (oldValue) {
+                    languageData[langName][key] = undefined;
+                    continue;
                 }
 
                 resultData[key] = value;
