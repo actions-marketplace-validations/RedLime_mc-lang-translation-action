@@ -79,7 +79,7 @@ async function run() {
 
                     // check outdated original value
                     if (oldValue && defaultValue != oldValue) {
-                        languageData[langName] = undefined;
+                        languageData[langName] = defaultValue;
                         continue;
                     }
                 }
